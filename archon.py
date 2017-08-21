@@ -25,6 +25,9 @@ def disk_check():
     print("To Arch θα εγκατασταθει στον {}".format(device))
     return device
 
+def disk_part()
+    size = print(subprocess.getoutput("sudo parted"+device+"print unit MB print free | grep -i '''Disk /dev/sd ''' | head -n 1 | grep -oE '''(\w+MB)'''"))
+    
 
 def mount_disk():
     print(subprocess.getoutput("mount"+device+"/mnt"))
@@ -64,4 +67,5 @@ def hostname():
 
 while True:
     disk_check()
+    disk_part()
     
