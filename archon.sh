@@ -28,7 +28,7 @@ echo
 echo 
 echo 'Δημιουργία κατάτμησης'
 echo  
-SIZE=$(parted $diskvar print unit MB print free | grep -i "Disk /dev/sd " | head -n 1 | grep -oE "(\w+\,\w+)"
+SIZE=$(parted $diskvar print unit MB print free | grep -i "Disk /dev/sd " | head -n 1 | grep -oE "(\w+MB")
 parted $diskvar mklabel gpt
 parted $diskvar print
 parted --align optimal $diskvar mkpart primary ext4 0% $SIZE
@@ -48,6 +48,8 @@ pacman -Syy
 echo 
 echo 'Εγκατάσταση της Βάσης του Arch Linux'
 echo 'Αν δεν έχετε κάνει ακόμα καφέ…. τώρα είναι η ευκαιρία...'
+echo
+sleep 2
 pacstrap -i /mnt base base-devel
 genfstab -U /mnt >> /mnt/etc/fstab
 echo 
