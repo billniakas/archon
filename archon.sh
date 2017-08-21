@@ -1,5 +1,7 @@
 #!/bin/bash
-echo 'Archon'
+clear
+setfont gr928-8x16-thin.psfu
+echo '--------------- Archon ----------------'
 echo 'ο πρώτος Ελληνικός Arch Linux Installer'
 echo
 sleep 1
