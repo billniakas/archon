@@ -28,9 +28,10 @@ echo
 echo 
 echo 'Δημιουργία κατάτμησης'
 echo  
+SIZE=$(parted $diskvar print unit MB print free | grep -i "Disk /dev/sd " | head -n 1 | grep -oE "(\w+\,\w+)"
 parted $diskvar mklabel gpt
 parted $diskvar print
-parted --align optimal $diskvar mkpart primary ext4 0%
+parted --align optimal $diskvar mkpart primary ext4 0% $SIZE
 parted $diskvar print
 mkfs.ext4 $diskvar
 echo 
