@@ -69,6 +69,7 @@ echo 'Είσοδος στο εγκατεστημένο Arch Linux'
 echo '--------------------------------------------------------'
 echo
 wget https://raw.githubusercontent.com/billniakas/archon/master/archon.2 
+chmod +x archon.2
 cp archon.2 /mnt/archon2.sh
 genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt ./archon2.sh
