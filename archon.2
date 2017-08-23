@@ -18,6 +18,7 @@ echo 'Ρύθμιση της κάρτας δικτύου'
 echo '-------------------------------------'
 ethernet=$(ip link | grep "2: "| grep -oE "(en\w+)")
 systemctl enable dhcpcd@$ethernet.service
+echo 'Η κάρτα δικτύου $ethernet ρυθμίστηκε επιτυχώς'
 echo 
 echo '-------------------------------------'
 echo 'Αλλαγή συνθηματικού(password) '
@@ -37,7 +38,7 @@ echo '-------------------------------------'
 echo 'Δημιουργία νέου χρήστη και'
 echo 'δικαιώματα διαχειριστή'
 echo '-------------------------------------'
-read -p "Δώστε παρακαλώ νέο όνομα χρήστη" $onomaxristi
+read -p "Δώστε παρακαλώ νέο όνομα χρήστη" onomaxristi
 useradd -m -G wheel -s /bin/bash $onomaxristi
 passwd $onomaxristi
 echo "$onomaxristi ALL=(ALL) ALL" >> /etc/sudoers
