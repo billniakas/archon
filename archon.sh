@@ -44,7 +44,7 @@ echo 'Προσάρτηση των Partition του Arch Linux'
 echo '--------------------------------------------------------'
 echo 
 sleep 1
-mount $diskvar /mnt
+mount $diskvar"1" /mnt
 echo 
 echo '--------------------------------------------------------'
 echo 'Προσθήκη πηγών λογισμικού (Mirrors)'
