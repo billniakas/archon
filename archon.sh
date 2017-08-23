@@ -37,6 +37,7 @@ echo 'Δημιουργία κατάτμησης'
 echo  
 parted $diskvar mklabel gpt
 parted $diskvar mkpart primary ext4 1MiB 100%
+mkfs.ext4 $diskvar
 echo 
 echo '--------------------------------------------------------'
 echo 'Προσάρτηση των Partition του Arch Linux'
@@ -70,7 +71,7 @@ echo '--------------------------------------------------------'
 echo
 wget https://raw.githubusercontent.com/billniakas/archon/master/archon.2 
 cp archon.2 /mnt/root/archon.sh
-arch-chroot /mnt | sh archon.sh
+arch-chroot /mnt && sh archon.sh
 
 
 
