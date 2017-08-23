@@ -35,8 +35,9 @@ sleep 2
 echo 
 echo 'Δημιουργία κατάτμησης'
 echo  
-parted $diskvar mklabel gpt mkpart P1 ext4 1MiB 100%
-mkfs.ext4 $diskvar
+parted $diskvar mklabel gpt mkpart P1 ext3 1MiB 100MiB
+parted $diskvar mklabel gpt mkpart P1 ext4 100MiB 100%
+#mkfs.ext4 $diskvar
 echo 
 echo '--------------------------------------------------------'
 echo 'Προσάρτηση των Partition του Arch Linux'
@@ -69,7 +70,7 @@ echo 'Είσοδος στο εγκατεστημένο Arch Linux'
 echo '--------------------------------------------------------'
 echo
 wget https://raw.githubusercontent.com/billniakas/archon/master/archon.2 
-cp archon.2 /mnt/archon.sh
+cp archon.2 /mnt/root/archon.sh
 arch-chroot /mnt | sh archon.sh
 
 

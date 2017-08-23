@@ -1,5 +1,7 @@
 echo 
+echo '-------------------------------------'
 echo 'Τροποποίηση Γλώσσας και Ζώνης Ώρας'
+echo '-------------------------------------'
 echo 
 echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 locale-gen
@@ -10,4 +12,45 @@ hwclock --systohc
 echo
 read -p "Δώστε όνομα υπολογιστή (hostname)" hostvar
 echo $hostvar > /etc/hostname
+echo 
+echo '-------------------------------------'
+echo 'Ρύθμιση της κάρτας δικτύου'
+echo '-------------------------------------'
+ethernet=$(ip link | grep "2: "| grep -oE "(en\w+)")
+systemctl enable dhcpcd@$ethernet.service
+echo 
+echo '-------------------------------------'
+echo 'Αλλαγή συνθηματικού(password) '
+echo 'του root χρήστη'
+echo '-------------------------------------'
+passwd
+echo 
+echo '-------------------------------------'
+echo 'Ρύθμιση Bootloader'
+echo '-------------------------------------'
+echo
+pacman -S grub
+grub-install --target=i386-pc --recheck /dev/sda
+grub-mkconfig -o /boot/grub/grub.cfg
+echo 
+echo '-------------------------------------'
+echo 'Δημιουργία νέου χρήστη και'
+echo 'δικαιώματα διαχειριστή'
+echo '-------------------------------------'
+read -p "Δώστε παρακαλώ νέο όνομα χρήστη" $onomaxristi
+useradd -m -G wheel -s /bin/bash $onomaxristi
+passwd $onomaxristi
+echo "$onomaxristi ALL=(ALL) ALL" >> /etc/sudoers
+echo 
+echo '-------------------------------------'
+echo 'Προσθήκη Multilib και AUR'
+echo '-------------------------------------'
+echo
+echo "[multilib]" >> /etc/pacman.conf
+echo "Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
+echo "[archlinuxfr]" >> /etc/pacman.conf
+echo "SigLevel = Never" >> /etc/pacman.conf
+echo "Server = http://repo.archlinux.fr/$arch" >> /etc/pacman.conf
+pacman -Syy yaourt
+
 
