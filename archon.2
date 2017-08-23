@@ -54,6 +54,9 @@ echo "Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
 echo "[archlinuxfr]" >> /etc/pacman.conf
 echo "SigLevel = Never" >> /etc/pacman.conf
 echo "Server = http://repo.archlinux.fr/\$arch" >> /etc/pacman.conf
-pacman -Syy yaourt
+pacman -S --noconfirm yaourt
+pacman -S --noconfirm systemd-swap
+systemctl enable systemd-swap
+systemctl start systemd-swap
 
 
