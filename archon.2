@@ -10,7 +10,7 @@ export LANG=en_US.UTF-8
 ln -sf /usr/share/zoneinfo/Europe/Athens /etc/localtime
 hwclock --systohc
 echo
-read -p "Δώστε όνομα υπολογιστή (hostname)" hostvar
+read -p "Δώστε όνομα υπολογιστή (hostname): " hostvar
 echo $hostvar > /etc/hostname
 echo 
 echo '-------------------------------------'
@@ -18,6 +18,7 @@ echo 'Ρύθμιση της κάρτας δικτύου'
 echo '-------------------------------------'
 ethernet=$(ip link | grep "2: "| grep -oE "(en\w+)")
 systemctl enable dhcpcd@$ethernet.service
+echo
 echo 'Η κάρτα δικτύου $ethernet ρυθμίστηκε επιτυχώς'
 echo 
 echo '-------------------------------------'
@@ -30,7 +31,7 @@ echo '-------------------------------------'
 echo 'Ρύθμιση Bootloader'
 echo '-------------------------------------'
 echo
-pacman -S grub
+pacman -S --noconfirm grub
 grub-install --target=i386-pc --recheck /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 echo 
@@ -38,7 +39,8 @@ echo '-------------------------------------'
 echo 'Δημιουργία νέου χρήστη και'
 echo 'δικαιώματα διαχειριστή'
 echo '-------------------------------------'
-read -p "Δώστε παρακαλώ νέο όνομα χρήστη" onomaxristi
+echo
+read -p "Δώστε παρακαλώ νέο όνομα χρήστη: " onomaxristi
 useradd -m -G wheel -s /bin/bash $onomaxristi
 passwd $onomaxristi
 echo "$onomaxristi ALL=(ALL) ALL" >> /etc/sudoers
@@ -51,7 +53,7 @@ echo "[multilib]" >> /etc/pacman.conf
 echo "Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
 echo "[archlinuxfr]" >> /etc/pacman.conf
 echo "SigLevel = Never" >> /etc/pacman.conf
-echo "Server = http://repo.archlinux.fr/$arch" >> /etc/pacman.conf
+echo "Server = http://repo.archlinux.fr/\$arch" >> /etc/pacman.conf
 pacman -Syy yaourt
 
 
