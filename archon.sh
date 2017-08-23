@@ -37,7 +37,7 @@ echo 'Δημιουργία κατάτμησης'
 echo  
 parted $diskvar mklabel gpt
 parted $diskvar mkpart primary ext4 1MiB 100%
-mkfs.ext4 $diskvar
+mkfs.ext4 $diskvar"1"
 echo 
 echo '--------------------------------------------------------'
 echo 'Προσάρτηση των Partition του Arch Linux'
