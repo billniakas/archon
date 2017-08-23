@@ -55,7 +55,12 @@ echo "[archlinuxfr]" >> /etc/pacman.conf
 echo "SigLevel = Never" >> /etc/pacman.conf
 echo "Server = http://repo.archlinux.fr/\$arch" >> /etc/pacman.conf
 pacman -Syy --noconfirm yaourt
+############################ Installing Zswap ###############################
 pacman -S --noconfirm systemd-swap
+sed -i '17s/.*/zswap_enabled=0/' /etc/systemd/swap.conf
+sed -i '29s/.*/zram_enabled=1/' /etc/systemd/swap.conf
+sed -i '38s/.*/swapfu_enabled=0/' /etc/systemd/swap.conf
+sed -i '79s/.*/swapfc_enabled=1/' /etc/systemd/swap.conf
 systemctl enable systemd-swap
 systemctl start systemd-swap
 
