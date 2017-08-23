@@ -1,0 +1,13 @@
+echo 
+echo 'Τροποποίηση Γλώσσας και Ζώνης Ώρας'
+echo 
+echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+locale-gen
+echo LANG=en_US.UTF-8 > /etc/locale.conf
+export LANG=en_US.UTF-8
+ln -sf /usr/share/zoneinfo/Europe/Athens /etc/localtime
+hwclock --systohc
+echo
+read -p "Δώστε όνομα υπολογιστή (hostname)" hostvar
+echo $hostvar > /etc/hostname
+

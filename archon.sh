@@ -35,11 +35,7 @@ sleep 2
 echo 
 echo 'Δημιουργία κατάτμησης'
 echo  
-SIZE=$(parted $diskvar print unit MB print free | grep -i "Disk /dev/sd " | head -n 1 | grep -oE "(\w+MB)")
-parted $diskvar mklabel gpt
-parted $diskvar print
-parted --align optimal $diskvar mkpart primary ext4 0% $SIZE
-parted $diskvar print
+parted $diskvar mklabel gpt mkpart P1 ext4 1MiB 100%
 mkfs.ext4 $diskvar
 echo 
 echo '--------------------------------------------------------'
@@ -65,26 +61,16 @@ echo 'Αν δεν έχετε κάνει ακόμα καφέ…. τώρα είν�
 echo '--------------------------------------------------------'
 echo
 sleep 2
-pacstrap -i /mnt base
+pacstrap -i /mnt base base-devel
 genfstab -U /mnt >> /mnt/etc/fstab
 echo 
 echo '--------------------------------------------------------'
 echo 'Είσοδος στο εγκατεστημένο Arch Linux'
 echo '--------------------------------------------------------'
-echo 
-arch-chroot /mnt
-echo 
-echo 'Τροποποίηση Γλώσσας και Ζώνης Ώρας'
-echo 
-echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
-locale-gen
-echo LANG=en_US.UTF-8 > /etc/locale.conf
-export LANG=en_US.UTF-8
-ln -sf /usr/share/zoneinfo/Europe/Athens /etc/localtime
-hwclock --systohc
 echo
-read -p "Δώστε όνομα υπολογιστή (hostname)" hostvar
-echo $hostvar > /etc/hostname
+wget https://raw.githubusercontent.com/billniakas/archon/master/archon.2 
+cp archon.2 /mnt/archon.sh
+arch-chroot /mnt | sh archon.sh
 
 
 
