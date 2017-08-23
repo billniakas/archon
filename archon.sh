@@ -52,7 +52,7 @@ echo '--------------------------------------------------------'
 echo
 sleep 1 
 pacman -Syy
-pacman -S reflector
+pacman -S --noconfirm reflector
 reflector --latest 10 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 pacman -Syy
 echo 
@@ -63,15 +63,15 @@ echo '--------------------------------------------------------'
 echo
 sleep 2
 pacstrap -i /mnt base base-devel
-genfstab -U /mnt >> /mnt/etc/fstab
 echo 
 echo '--------------------------------------------------------'
 echo 'Είσοδος στο εγκατεστημένο Arch Linux'
 echo '--------------------------------------------------------'
 echo
 wget https://raw.githubusercontent.com/billniakas/archon/master/archon.2 
-cp archon.2 /mnt/root/archon.sh
-arch-chroot /mnt && sh archon.sh
+cp archon.2 /mnt/archon2.sh
+genfstab -U /mnt >> /mnt/etc/fstab
+arch-chroot /mnt ./archon2.sh
 
 
 
