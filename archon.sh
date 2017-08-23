@@ -1,18 +1,18 @@
 #!/bin/bash
 clear
 setfont gr928-8x16-thin.psfu
-echo '---------------------- Archon -------------------------'
+echo '---------------------- Archon ---------------------------'
 echo 
 echo 
-echo  .d888888                    dP                         
-echo  d8'    88                    88                         
-echo  88aaaaa88a 88d888b. .d8888b. 88d888b. .d8888b. 88d888b. 
-echo  88     88  88'  `88 88'  `"" 88'  `88 88'  `88 88'  `88 
-echo  88     88  88       88.  ... 88    88 88.  .88 88    88 
-echo  88     88  dP       `88888P' dP    dP `88888P' dP    dP 
-echo  oooooooooooooooooooooooooooooooooooooooooooooooooooooooo
-echo          Ο πρώτος Ελληνικός Arch Linux Installer
-echo '--------------------------------------------------------'                                                        
+echo ' .d888888                    dP                          '
+echo ' d8'    88                    88                         '
+echo ' 88aaaaa88a 88d888b. .d8888b. 88d888b. .d8888b. 88d888b. '
+echo ' 88     88  88'  `88 88'  `"" 88'  `88 88'  `88 88'  `88 '
+echo ' 88     88  88       88.  ... 88    88 88.  .88 88    88 '
+echo ' 88     88  dP       `88888P' dP    dP `88888P' dP    dP '
+echo ' oooooooooooooooooooooooooooooooooooooooooooooooooooooooo'
+echo '         Ο πρώτος Ελληνικός Arch Linux Installer'
+echo '---------------------------------------------------------'                                                        
 sleep 2
 echo ' Σκοπός αυτού του cli εγκαταστάτη είναι η εγκατάσταση του'
 echo ' βασικού συστήματος Arch Linux ΧΩΡΙΣ γραφικό περιβάλλον.'
