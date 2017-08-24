@@ -31,9 +31,19 @@ echo '-------------------------------------'
 echo 'Ρύθμιση Bootloader'
 echo '-------------------------------------'
 echo
-pacman -S --noconfirm grub
-grub-install --target=i386-pc --recheck /dev/sda
-grub-mkconfig -o /boot/grub/grub.cfg
+if [ -d /sys/firmware/efi ]; then
+	pacman -S --noconfirm grub efibootmgr
+	grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=arch_grub --recheck
+	grub-mkconfig -o /boot/grub/grub.cfg
+else
+	pacman -S --noconfirm grub
+	grub-install --target=i386-pc --recheck #/dev/sda
+	grub-mkconfig -o /boot/grub/grub.cfg
+fi
+
+#pacman -S --noconfirm grub
+#grub-install --target=i386-pc --recheck /dev/sda
+#grub-mkconfig -o /boot/grub/grub.cfg
 echo 
 echo '-------------------------------------'
 echo 'Δημιουργία νέου χρήστη και'
