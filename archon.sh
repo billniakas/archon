@@ -49,8 +49,9 @@ sleep 2
 ################### Check if BIOS or UEFI #####################
 if [ -d /sys/firmware/efi ]; then
 	echo
-	echo "Χρησιμοποιείς PC με UEFI"
+	echo " Χρησιμοποιείς PC με UEFI";
 	echo
+	sleep 1
 	parted $diskvar mklabel gpt
 	parted $diskvar mkpart ESP fat32 1MiB 513MiB
 	parted $diskvar mkpart primary ext4 513MiB 100%
@@ -64,8 +65,9 @@ if [ -d /sys/firmware/efi ]; then
 	
 else
 	echo	
-	echo "Χρησιμοποιείς PC με BIOS"
+	echo " Χρησιμοποιείς PC με BIOS";
 	echo
+	sleep 1
 	parted $diskvar mklabel msdos
 	parted $diskvar mkpart primary ext4 1MiB 100%
 	mkfs.ext4 $diskvar"1"
