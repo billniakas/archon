@@ -1,4 +1,6 @@
 # Archon (Άρχων)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fbillniakas%2Farchon.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fbillniakas%2Farchon?ref=badge_shield)
+
 
 ```
       _____  
@@ -40,3 +42,7 @@ $ sh archon.sh
 /dev/sdx
 ```
 όπου x το γράμμα του δίσκου όπου θα γίνει η εγκατάσταση (πχ /dev/sda).
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fbillniakas%2Farchon.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fbillniakas%2Farchon?ref=badge_large)
